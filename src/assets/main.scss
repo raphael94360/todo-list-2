@@ -1,0 +1,105 @@
+.input {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  input {
+    width: 400px;
+    height: 40px;
+    margin-right: 20px;
+    padding-left: 15px;
+    outline: none;
+    border-radius: 7px;
+    border: 1px solid rgb(16, 66, 82);
+    background-color: rgba(16, 66, 82, 0.7);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: white;
+
+    &::placeholder {
+      font-style: italic;
+      color: white;
+      opacity: 0.5;
+    }
+  }
+
+  button {
+    height: 45px;
+    width: 100px;
+    background-color: rgba(16, 66, 82, 0.7);
+    outline: none;
+    border: 1px solid rgb(16, 66, 82);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+      color: rgb(16, 66, 82);
+      font-weight: bold;
+    }
+  }
+}
+
+.container {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 250px;
+  margin-bottom: 50px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: rgb(16, 66, 82);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    padding: 20px 0;
+  }
+
+  .block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    input {
+      width: 30px;
+      height: 30px;
+      margin-right: 20px;
+    }
+
+    p {
+      margin-right: 20px;
+      width: 600px;
+      height: 40px;
+      border-radius: 7px;
+      font-size: 1.4rem;
+      color: rgb(16, 66, 82);
+      font-style: italic;
+      font-weight: bold;
+      line-height: 2.5rem;
+      padding-left: 10px;
+    }
+
+    .line-through {
+      text-decoration-line: line-through;
+    }
+
+    span {
+      width: 50px;
+      height: 50px;
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+  }
+}

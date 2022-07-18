@@ -1,107 +1,75 @@
 import "./App.scss";
 import { useState } from "react";
+import Header from "./components/Header";
+import Input from "./components/Input";
+import NotDone from "./components/NotDone";
+import Footer from "./components/Footer";
+import Done from "./components/Done";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTrashCan, faTrashArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-library.add(faTrashCan, faTrashArrowUp);
+import {
+  faTrashCan,
+  faTrashArrowUp,
+  faListUl,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faTrashCan, faTrashArrowUp, faListUl);
 
 function App() {
   const [tasks, setTasks] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [taskDone, setTaskDone] = useState([]);
-  const [mode, setMode] = useState(true);
   return (
-    <div className='App'>
-      <h1>TODO LIST</h1>
-      <button
-        onClick={() => {
-          setMode(false);
-          console.log(mode);
-          if (mode === false) {
-            <body className='dark'></body>;
-          }
-        }}
-      >
-        dark mode
-      </button>
-      <div>
-        {taskList.map((task, index) => {
-          return (
-            <div key={index}>
-              {" "}
-              <input
-                type='checkbox'
-                checked={task.isDone}
-                onChange={() => {
-                  const tab = [...taskList];
-                  const tab2 = [...taskDone];
-                  tab[index].isDone = !tab[index].isDone;
-                  if (tab[index].isDone === true) {
-                    tab2.push(tab[index]);
-                    setTaskDone(tab2);
-                    tab.splice(index, 1);
-                    setTaskList(tab);
-                  }
-                }}
-              ></input>
-              <p> {task.label} </p>
-              <FontAwesomeIcon
-                icon='fa-solid fa-trash-can'
-                onClick={() => {
-                  const tab = [...taskList];
-                  tab.splice(index, 1);
-                  setTaskList(tab);
-                }}
-              />
-            </div>
-          );
-        })}
-      </div>
+    <div className="App">
+      <header>
+        <Header title={"TODO LIST"} />
+      </header>
 
-      <div>
-        <input
-          type='text'
-          placeholder='new task'
-          value={tasks}
-          onChange={(event) => {
-            setTasks(event.target.value);
-          }}
+      <main>
+        <Input
+          tasks={tasks}
+          setTasks={setTasks}
+          taskList={taskList}
+          setTaskList={setTaskList}
         />
-        <button
-          onClick={() => {
-            const tab = [...taskList];
-            const obj = { label: tasks, isDone: false };
-            tab.push(obj);
-            setTaskList(tab);
-            setTasks("");
-          }}
-        >
-          ADD TASK
-        </button>
-      </div>
 
-      <div>
-        {taskDone.map((task, index) => {
-          return (
-            <div key={index} className='done'>
-              <input type='checkbox' disabled checked={task.isDone} />
-              <p>{task.label}</p>
-              <FontAwesomeIcon
-                icon='fa-solid fa-trash-arrow-up'
-                onClick={() => {
-                  const tab = [...taskDone];
-                  const tab2 = [...taskList];
-                  tab[index].isDone = false;
-                  tab2.push(tab[index]);
-                  setTaskList(tab2);
-                  tab.splice(index, 1);
-                  setTaskDone(tab);
-                }}
-              />
-            </div>
-          );
-        })}
-      </div>
+        <div className="container">
+          <h2>NOT DONE</h2>
+          {taskList.map((task, index) => {
+            return (
+              <div key={index}>
+                <NotDone
+                  taskList={taskList}
+                  taskDone={taskDone}
+                  setTaskDone={setTaskDone}
+                  setTaskList={setTaskList}
+                  task={task}
+                  index={index}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="container">
+          <h2> DONE </h2>
+          {taskDone.map((task, index) => {
+            return (
+              <div key={index}>
+                <Done
+                  task={task}
+                  taskDone={taskDone}
+                  taskList={taskList}
+                  index={index}
+                  setTaskDone={setTaskDone}
+                  setTaskList={setTaskList}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </main>
+      <footer>
+        <Footer text={"Made with React by Raphaël"} />
+      </footer>
     </div>
   );
 }

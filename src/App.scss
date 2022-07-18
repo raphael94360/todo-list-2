@@ -1,9 +1,4 @@
-body {
-  .dark {
-    background-color: black;
-  }
-}
-
-.done {
-  text-decoration: line-through;
-}
+@import "./assets/general.scss";
+@import "./assets/header.scss";
+@import "./assets/main.scss";
+@import "./assets/footer.scss";
